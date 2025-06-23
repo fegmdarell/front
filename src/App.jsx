@@ -1,7 +1,6 @@
 import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Registro from './pages/Registro';
 import Dashboard from './pages/Dashboard';
@@ -10,17 +9,12 @@ import Chat from './pages/Chat';
 import Precios from './pages/Precios';
 import Ayuda from './pages/Ayuda';
 
-// Si tienes estos componentes, mantenlos, si no, comenta o elimina estas líneas
-import RightPanel from './components/RightPanel';
-import ChatWidget from './components/ChatWidget';
-
 export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(true);
 
-  // Oculta el sidebar en landing, login y registro
-  const hideSidebar = location.pathname === '/' || location.pathname === '/registro' || location.pathname === '/login';
+  const hideSidebar = location.pathname === '/' || location.pathname === '/registro';
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
 
@@ -29,6 +23,7 @@ export default function App() {
       {!hideSidebar && (
         <>
           <button onClick={toggleMenu} style={hamburgerButton}>☰</button>
+
           <nav
             className={menuVisible ? 'sidebar-visible' : 'sidebar-hidden'}
             style={{
@@ -60,8 +55,7 @@ export default function App() {
 
       <main style={{ marginLeft: hideSidebar ? 0 : 260, marginRight: hideSidebar ? 0 : 300, flex: 1, padding: '2rem', width: '100%' }}>
         <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/perfil" element={<Perfil />} />
@@ -71,57 +65,92 @@ export default function App() {
         </Routes>
       </main>
 
-      {!hideSidebar && (
-        <>
-          <RightPanel />
-          <ChatWidget />
-        </>
-      )}
+     
     </div>
   );
 }
 
-// 🎨 ESTILOS (puedes moverlos a un archivo aparte si prefieres)
+// 🔔 Panel de notificaciones moderno
+function () {
+  return (
+    <div style={panelStyle}>
+      <h3 style={panelTitle}>🔔 Notificaciones</h3>
+      <div style={notiCard}>
+        <span style={notiIcon}>📌</span>
+        <div>
+          <strong>Solicitud de conexión</strong>
+          <p style={notiText}>EcoSoluciones quiere conectar contigo.</p>
+        </div>
+      </div>
+      <div style={notiCard}>
+        <span style={notiIcon}>💼</span>
+        <div>
+          <strong>Visita reciente</strong>
+          <p style={notiText}>AgroFuturo revisó tu perfil hoy.</p>
+        </div>
+      </div>
+      <div style={notiCard}>
+        <span style={notiIcon}>💳</span>
+        <div>
+          <strong>Plan activo</strong>
+          <p style={notiText}>Estás usando el plan <b>Básico</b>.</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// 💬 Chat flotante inferior derecho
+function ChatWidget() {
+  return (
+    <div style={chatBubble}>
+      💬 ¿Necesitas ayuda?
+    </div>
+  );
+}
+
+// 🎨 ESTILOS
+
 const layoutContainer = {
   display: 'flex',
   minHeight: '100vh',
-  background: '#f8fafc'
+  backgroundColor: '#f0f2f5',
+  fontFamily: 'Poppins, sans-serif'
 };
 
 const sidebarStyle = {
   width: 260,
-  background: '#fff',
-  borderRight: '1px solid #e5e7eb',
-  padding: '2rem 1rem 1rem 1rem',
-  boxShadow: '2px 0 8px rgba(0,0,0,0.03)'
+  background: '#2c3e50',
+  padding: 24,
+  color: 'white'
 };
 
 const tituloSidebar = {
-  fontWeight: 700,
-  fontSize: '1.4rem',
-  marginBottom: '2rem',
-  color: '#007bff'
+  marginBottom: '2.5rem',
+  fontSize: '1.8rem',
+  textAlign: 'center',
+  marginTop: '1.5rem',
+  fontWeight: 'bold'
 };
 
 const link = {
-  display: 'block',
-  padding: '0.7rem 1rem',
-  color: '#333',
+  color: 'white',
   textDecoration: 'none',
-  borderRadius: '6px',
-  marginBottom: '0.5rem',
-  fontWeight: 500
+  display: 'block',
+  marginBottom: '1.2rem',
+  fontSize: '1.15rem'
 };
 
 const logoutButton = {
-  background: '#f87171',
-  color: '#fff',
+  background: '#ecf0f1',
+  color: '#2c3e50',
   border: 'none',
-  padding: '0.7rem 1rem',
-  borderRadius: '6px',
+  padding: '0.6rem 1rem',
+  fontSize: '1rem',
+  width: '100%',
   cursor: 'pointer',
-  fontWeight: 600,
-  marginTop: '1rem'
+  borderRadius: '4px',
+  marginTop: '1.5rem'
 };
 
 const hamburgerButton = {
@@ -129,16 +158,69 @@ const hamburgerButton = {
   top: 20,
   left: 20,
   zIndex: 20,
-  background: '#007bff',
-  color: '#fff',
+  fontSize: '1.8rem',
+  background: '#ecf0f1',
   border: 'none',
-  borderRadius: '50%',
-  width: 40,
-  height: 40,
-  fontSize: '1.5rem',
+  borderRadius: '4px',
+  padding: '0.3rem 0.8rem',
   cursor: 'pointer',
+  boxShadow: '0 2px 6px rgba(0,0,0,0.2)'
+};
+
+const panelStyle = {
+  position: 'fixed',
+  top: 0,
+  right: 0,
+  width: '300px',
+  height: '100vh',
+  background: '#ffffff',
+  padding: '2rem 1.5rem',
+  boxShadow: '0 0 12px rgba(0,0,0,0.1)',
+  zIndex: 9,
+  overflowY: 'auto'
+};
+
+const panelTitle = {
+  fontSize: '1.3rem',
+  marginBottom: '1.5rem',
+  textAlign: 'center',
+  color: '#2c3e50'
+};
+
+const notiCard = {
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
+  alignItems: 'flex-start',
+  background: '#f9fbfc',
+  borderRadius: '8px',
+  padding: '1rem',
+  marginBottom: '1rem',
+  boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+  gap: '0.75rem'
+};
+
+const notiIcon = {
+  fontSize: '1.5rem',
+  color: '#3498db',
+  marginTop: '2px'
+};
+
+const notiText = {
+  fontSize: '0.9rem',
+  color: '#34495e',
+  margin: '0.25rem 0 0 0'
+};
+
+const chatBubble = {
+  position: 'fixed',
+  bottom: '25px',
+  right: '25px',
+  background: '#3498db',
+  color: 'white',
+  padding: '0.8rem 1.2rem',
+  borderRadius: '25px',
+  cursor: 'pointer',
+  fontWeight: 'bold',
+  fontSize: '0.95rem',
+  boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+  zIndex: 15
 };
