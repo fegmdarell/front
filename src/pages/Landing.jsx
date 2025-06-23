@@ -1,19 +1,16 @@
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png'; // Asegúrate de que la ruta sea correcta
 
 export default function Landing() {
   const navigate = useNavigate();
 
   return (
     <div style={landingWrapper}>
+      <img src={logo} alt="Logo Conecta" style={logoStyle} />
       <h1 style={titulo}>🌐 Conecta Empresas</h1>
       <p style={subtitulo}>
         Conecta empresas, crea alianzas y haz crecer tu red de negocios en Colombia.
       </p>
-      <img
-        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
-        alt="Empresas conectadas"
-        style={imagen}
-      />
       <div style={botones}>
         <button style={btnPrimario} onClick={() => navigate('/login')}>
           Iniciar Sesión
@@ -33,13 +30,18 @@ const landingWrapper = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  background: 'linear-gradient(135deg, #e0e7ff 0%, #fff 100%)',
+  background: 'linear-gradient(135deg, #0f2027 0%, #2c5364 100%)', // Fondo degradado azul oscuro
   padding: '2rem'
+};
+
+const logoStyle = {
+  width: '180px',
+  marginBottom: '2rem'
 };
 
 const titulo = {
   fontSize: '2.5rem',
-  color: '#007bff',
+  color: '#fff',
   marginBottom: '1rem',
   fontWeight: 700,
   textAlign: 'center'
@@ -47,17 +49,10 @@ const titulo = {
 
 const subtitulo = {
   fontSize: '1.2rem',
-  color: '#333',
+  color: '#e0e7ff',
   marginBottom: '2rem',
   textAlign: 'center',
   maxWidth: '500px'
-};
-
-const imagen = {
-  width: '320px',
-  borderRadius: '16px',
-  marginBottom: '2rem',
-  boxShadow: '0 4px 16px rgba(0,0,0,0.10)'
 };
 
 const botones = {
