@@ -65,9 +65,7 @@ export default function Login() {
             Regístrate
           </button>
         </p>
-        <button style={btnPrimario} onClick={() => navigate('/login')}>
-          Iniciar Sesión
-        </button>
+       
       </div>
     </div>
   );
