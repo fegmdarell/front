@@ -7,9 +7,9 @@ export default function Landing() {
   return (
     <div style={landingWrapper}>
       <img src={logo} alt="Logo Conecta" style={logoStyle} />
-      <h1 style={titulo}>🌐 Conecta Empresas</h1>
+      <h1 style={titulo}>CONECTA</h1>
       <p style={subtitulo}>
-        Conecta empresas, crea alianzas y haz crecer tu red de negocios en Colombia.
+         Tu puente digital para crecer en red.
       </p>
       <div style={botones}>
         <button style={btnPrimario} onClick={() => navigate('/login')}>
@@ -40,11 +40,19 @@ const logoStyle = {
 };
 
 const titulo = {
-  fontSize: '2.5rem',
+  fontSize: '2.8rem',
   color: '#fff',
   marginBottom: '1rem',
-  fontWeight: 700,
-  textAlign: 'center'
+  fontWeight: 900,
+  textAlign: 'center',
+  letterSpacing: '0.1em',
+  textShadow: `
+    0 0 8px #39ff14,    /* verde neón */
+    0 0 16px #00fff7,   /* azul neón */
+    0 0 24px #ff00de,   /* rosa neón */
+    0 0 32px #fff200,   /* amarillo neón */
+    0 0 40px #39ff14
+  `
 };
 
 const subtitulo = {
