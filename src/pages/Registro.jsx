@@ -44,7 +44,7 @@ export default function Registro() {
         </form>
         <p style={text}>
           ¿Ya tienes cuenta?
-          <button onClick={() => navigate('/')} style={linkButton}>
+          <button onClick={() => navigate('/login')} style={linkButton}>
             Inicia sesión aquí
           </button>
         </p>

@@ -1,4 +1,4 @@
-import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import { Routes, Route, Link, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import Landing from './pages/Landing';
@@ -59,7 +59,14 @@ export default function App() {
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              sessionStorage.getItem('usuario')
+                ? <Dashboard />
+                : <Navigate to="/login" replace />
+            }
+          />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/precios" element={<Precios />} />
