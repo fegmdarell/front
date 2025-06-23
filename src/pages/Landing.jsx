@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import logo from '../assets/logo.png'; // Asegúrate de que la ruta sea correcta
+import logo from '../assets/logo.jpg';
 
 export default function Landing() {
   const navigate = useNavigate();
