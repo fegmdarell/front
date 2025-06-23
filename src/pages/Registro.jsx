@@ -13,7 +13,7 @@ export default function Registro() {
     setMensaje('');
 
     try {
-      const res = await fetch('http://localhost:4000/api/empresa/registrar', {
+      const res = await fetch('https://backk-fugf.onrender.com/api/empresa/registrar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)

@@ -34,7 +34,7 @@ export default function Precios() {
             console.log("🧾 Detalles de la orden:", order)
 
             const usuario = JSON.parse(localStorage.getItem('usuario') || '{}')
-            await fetch('http://localhost:4000/api/empresa/registrar', {
+            await fetch('https://backk-fugf.onrender.com/api/empresa/registrar', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -59,7 +59,7 @@ export default function Precios() {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}')
 
     try {
-      const res = await fetch('http://localhost:4000/api/empresa/registrar', {
+      const res = await fetch('https://backk-fugf.onrender.com/api/empresa/registrar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
