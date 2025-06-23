@@ -55,6 +55,7 @@ export default function App() {
 
       <main style={{ marginLeft: hideSidebar ? 0 : 260, marginRight: hideSidebar ? 0 : 300, flex: 1, padding: '2rem', width: '100%' }}>
         <Routes>
+          <Route path="/" element={<Landing />} />
           <Route path="/" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -65,13 +66,18 @@ export default function App() {
         </Routes>
       </main>
 
-     
+      {!hideSidebar && (
+        <>
+          <RightPanel />
+          <ChatWidget />
+        </>
+      )}
     </div>
   );
 }
 
 // 🔔 Panel de notificaciones moderno
-function () {
+function RightPanel() {
   return (
     <div style={panelStyle}>
       <h3 style={panelTitle}>🔔 Notificaciones</h3>
