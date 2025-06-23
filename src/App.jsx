@@ -15,7 +15,7 @@ export default function App() {
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(true);
 
-  const hideSidebar = location.pathname === '/' || location.pathname === '/registro';
+  const hideSidebar = location.pathname === '/' || location.pathname === '/registro'|| location.pathname === '/login';
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
 
@@ -65,7 +65,9 @@ export default function App() {
               sessionStorage.getItem('usuario')
                 ? <Dashboard />
                 : <Navigate to="/login" replace />
-            }
+            }            // ...existing code...
+           // const hideSidebar = location.pathname === '/' || location.pathname === '/registro' || location.pathname === '/login';
+            // ...existing code...
           />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/chat" element={<Chat />} />
