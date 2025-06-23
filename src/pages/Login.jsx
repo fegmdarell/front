@@ -65,6 +65,9 @@ export default function Login() {
             Regístrate
           </button>
         </p>
+        <button style={btnPrimario} onClick={() => navigate('/login')}>
+          Iniciar Sesión
+        </button>
       </div>
     </div>
   );
@@ -134,4 +137,16 @@ const linkButton = {
   marginLeft: '0.25rem',
   cursor: 'pointer',
   textDecoration: 'underline',
+};
+
+const btnPrimario = {
+  backgroundColor: '#007bff',
+  color: 'white',
+  border: 'none',
+  padding: '0.75rem',
+  width: '100%',
+  fontSize: '1rem',
+  borderRadius: '4px',
+  cursor: 'pointer',
+  marginTop: '1rem',
 };
