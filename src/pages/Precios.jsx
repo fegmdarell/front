@@ -95,7 +95,32 @@ export default function Precios() {
             {plan.precio === 0 ? (
               <button onClick={handleGratuito} style={botonGratuito}>Comenzar</button>
             ) : (
-              <div id={`paypal-button-container-${plan.nombre}`}></div>
+              <div>
+                <div id={`paypal-button-container-${plan.nombre}`} style={{ marginBottom: 12 }}></div>
+                <button
+                  style={{
+                    background: '#00D6B7',
+                    color: '#fff',
+                    border: 'none',
+                    borderRadius: 8,
+                    padding: '0.7rem 2rem',
+                    fontWeight: 600,
+                    cursor: 'pointer'
+                  }}
+                  onClick={() => {
+                    const checkout = new window.WompiCheckout({
+                      currency: 'COP',
+                      amountInCents: plan.precio * 100, // Valor en centavos
+                      reference: `PLAN_${plan.nombre}_${Date.now()}`,
+                      publicKey: 'pub_test_xxxxxxxxxxxxxxxxxxxxxxxx', // Reemplaza por tu public key de Wompi
+                      redirectUrl: 'https://tusitio.com/confirmacion-pago'
+                    });
+                    checkout.open();
+                  }}
+                >
+                  Pagar con Wompi
+                </button>
+              </div>
             )}
           </div>
         ))}
