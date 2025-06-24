@@ -96,19 +96,20 @@ const chatLayout = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  background: '#fff', // Fondo blanco para toda la página
+  background: 'linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%)', // Fondo igual que otras páginas
   fontFamily: 'Poppins, sans-serif'
 };
 
 const contactosBar = {
   width: 220,
-  background: '#fff', // Fondo blanco para el panel de empresas
+  background: '#fff',
   borderRight: '1px solid #e0e0e0',
   padding: '2rem 1rem',
   display: 'flex',
   flexDirection: 'column',
   gap: 8,
-  marginRight: 40, // Separa del cuadro de conversación
+  marginLeft: 40,   // <-- Separa del menú lateral
+  marginRight: 40,  // <-- Separa del cuadro de conversación
   borderRadius: 16,
   boxShadow: '0 4px 24px #0001'
 };
