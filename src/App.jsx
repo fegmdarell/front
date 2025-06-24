@@ -16,7 +16,11 @@ export default function App() {
   const navigate = useNavigate();
   const [menuVisible, setMenuVisible] = useState(true);
 
-  const hideSidebar = location.pathname === '/' || location.pathname === '/registro'|| location.pathname === '/login';
+  const hideSidebar =
+    location.pathname === '/' ||
+    location.pathname === '/registro' ||
+    location.pathname === '/login' ||
+    location.pathname === '/politica-datos';
 
   const toggleMenu = () => setMenuVisible(!menuVisible);
 
