@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const planes = [
@@ -8,9 +8,21 @@ const planes = [
 ]
 
 export default function Precios() {
+  const [wompiReady, setWompiReady] = useState(false);
   const navigate = useNavigate()
 
   useEffect(() => {
+    // Cargar el script de Wompi si no está presente
+    if (!window.WompiCheckout) {
+      const script = document.createElement('script');
+      script.src = 'https://checkout.wompi.co/widget.js';
+      script.async = true;
+      script.onload = () => setWompiReady(true);
+      document.head.appendChild(script);
+    } else {
+      setWompiReady(true);
+    }
+
     planes.forEach((plan) => {
       const containerId = `paypal-button-container-${plan.nombre}`
       const container = document.getElementById(containerId)
@@ -101,6 +113,7 @@ export default function Precios() {
                 {/* Botón de Wompi */}
                 <button
                   type="button"
+                  disabled={!wompiReady}
                   style={{
                     background: '#00D6B7',
                     color: '#fff',
