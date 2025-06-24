@@ -10,6 +10,7 @@ import Chat from './pages/Chat';
 import Precios from './pages/Precios';
 import Ayuda from './pages/Ayuda';
 import PoliticaDatos from './pages/PoliticaDatos';
+import ConfirmacionPago from './pages/ConfirmacionPago';
 
 export default function App() {
   const location = useLocation();
@@ -86,6 +87,7 @@ export default function App() {
           <Route path="/precios" element={<Precios />} />
           <Route path="/ayuda" element={<Ayuda />} />
           <Route path="/politica-datos" element={<PoliticaDatos />} />
+          <Route path="/confirmacion-pago" element={<ConfirmacionPago />} />
         </Routes>
       </main>
 

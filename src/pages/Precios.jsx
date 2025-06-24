@@ -96,8 +96,11 @@ export default function Precios() {
               <button onClick={handleGratuito} style={botonGratuito}>Comenzar</button>
             ) : (
               <div>
+                {/* Botón de PayPal (si lo quieres dejar) */}
                 <div id={`paypal-button-container-${plan.nombre}`} style={{ marginBottom: 12 }}></div>
+                {/* Botón de Wompi */}
                 <button
+                  type="button"
                   style={{
                     background: '#00D6B7',
                     color: '#fff',
@@ -105,17 +108,18 @@ export default function Precios() {
                     borderRadius: 8,
                     padding: '0.7rem 2rem',
                     fontWeight: 600,
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    marginTop: 8
                   }}
                   onClick={() => {
+                    localStorage.setItem('planSeleccionado', plan.nombre);
                     if (window.WompiCheckout) {
-                      localStorage.setItem('planSeleccionado', plan.nombre); // Guarda el plan para la confirmación
                       const checkout = new window.WompiCheckout({
                         currency: 'COP',
-                        amountInCents: plan.precio * 100,
+                        amountInCents: plan.precio * 100, // Valor en centavos
                         reference: `PLAN_${plan.nombre}_${Date.now()}`,
-                        publicKey: 'pub_test_WRHK7IAoMOBzRDBFxTvJi7r9RjMh74E5', // Tu public key real
-                        redirectUrl: 'https://front-beige-six.vercel.app/confirmacion-pago' // Tu dominio real
+                        publicKey: 'pub_test_WRHK7IAoMOBzRDBFxTvJi7r9RjMh74E5', // Tu public key
+                        redirectUrl: 'https://front-beige-six.vercel.app/confirmacion-pago'
                       });
                       checkout.open();
                     } else {

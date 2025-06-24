@@ -7,9 +7,9 @@ export default function ConfirmacionPago() {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search)
-    const wompiTransactionId = params.get('id') // Wompi envía ?id=xxxx en la URL
+    const wompiTransactionId = params.get('id')
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}')
-    const planSeleccionado = localStorage.getItem('planSeleccionado') // Guarda el plan antes de redirigir a Wompi
+    const planSeleccionado = localStorage.getItem('planSeleccionado')
 
     if (wompiTransactionId && usuario.correo && planSeleccionado) {
       fetch('https://backk-fugf.onrender.com/api/wompi/confirmar', {
