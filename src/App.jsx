@@ -54,7 +54,16 @@ export default function App() {
         </>
       )}
 
-      <main style={{ marginLeft: hideSidebar ? 0 : 260, marginRight: hideSidebar ? 0 : 300, flex: 1, padding: '2rem', width: '100%' }}>
+      <main
+        style={{
+          marginLeft: hideSidebar ? 0 : 260,
+          marginRight: hideSidebar ? 0 : 300,
+          flex: 1,
+          padding: hideSidebar ? 0 : '2rem', // <--- Cambia esto
+          width: '100%',
+          minHeight: '100vh', // <--- Asegura esto
+        }}
+      >
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
@@ -65,9 +74,7 @@ export default function App() {
               sessionStorage.getItem('usuario')
                 ? <Dashboard />
                 : <Navigate to="/login" replace />
-            }            // ...existing code...
-           // const hideSidebar = location.pathname === '/' || location.pathname === '/registro' || location.pathname === '/login';
-            // ...existing code...
+            }
           />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/chat" element={<Chat />} />
