@@ -108,14 +108,19 @@ export default function Precios() {
                     cursor: 'pointer'
                   }}
                   onClick={() => {
-                    const checkout = new window.WompiCheckout({
-                      currency: 'COP',
-                      amountInCents: plan.precio * 100, // Valor en centavos
-                      reference: `PLAN_${plan.nombre}_${Date.now()}`,
-                      publicKey: 'pub_test_xxxxxxxxxxxxxxxxxxxxxxxx', // Reemplaza por tu public key de Wompi
-                      redirectUrl: 'https://tusitio.com/confirmacion-pago'
-                    });
-                    checkout.open();
+                    if (window.WompiCheckout) {
+                      localStorage.setItem('planSeleccionado', plan.nombre); // Guarda el plan para la confirmación
+                      const checkout = new window.WompiCheckout({
+                        currency: 'COP',
+                        amountInCents: plan.precio * 100,
+                        reference: `PLAN_${plan.nombre}_${Date.now()}`,
+                        publicKey: 'pub_test_WRHK7IAoMOBzRDBFxTvJi7r9RjMh74E5', // Tu public key real
+                        redirectUrl: 'https://front-beige-six.vercel.app/confirmacion-pago' // Tu dominio real
+                      });
+                      checkout.open();
+                    } else {
+                      alert('Wompi no está disponible. Recarga la página.');
+                    }
                   }}
                 >
                   Pagar con Wompi
