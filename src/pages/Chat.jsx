@@ -124,8 +124,10 @@ const contactoLogo = {
 };
 const chatCard = {
   flex: 1,
-  height: '100vh',
-  background: '#fff', // Fondo blanco para la conversación
+  width: 380, // Ancho fijo
+  maxWidth: '95vw',
+  height: 520, // Altura máxima más pequeña
+  background: '#fff',
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden'
