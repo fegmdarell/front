@@ -12,15 +12,25 @@ export default function Precios() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Cargar el script de Wompi si no está presente
-    if (!window.WompiCheckout) {
+    // Si ya existe el script, no lo agregues de nuevo
+    if (!document.getElementById('wompi-script')) {
       const script = document.createElement('script');
       script.src = 'https://checkout.wompi.co/widget.js';
       script.async = true;
+      script.id = 'wompi-script';
       script.onload = () => setWompiReady(true);
       document.head.appendChild(script);
-    } else {
+    } else if (window.WompiCheckout) {
       setWompiReady(true);
+    } else {
+      // Espera a que el script cargue si ya está en el DOM pero aún no está disponible
+      const interval = setInterval(() => {
+        if (window.WompiCheckout) {
+          setWompiReady(true);
+          clearInterval(interval);
+        }
+      }, 200);
+      return () => clearInterval(interval);
     }
 
     planes.forEach((plan) => {
