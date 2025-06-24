@@ -94,20 +94,25 @@ export default function Chat() {
 const chatLayout = {
   minHeight: '100vh',
   display: 'flex',
-  justifyContent: 'center',   // Centra horizontalmente todo el contenido
-  alignItems: 'center',       // Centra verticalmente
-  background: 'linear-gradient(135deg, #25d366 0%, #075e54 100%)',
+  justifyContent: 'center',
+  alignItems: 'center',
+  background: '#fff', // Fondo blanco para toda la página
   fontFamily: 'Poppins, sans-serif'
 };
+
 const contactosBar = {
   width: 220,
-  background: '#f8fafb', // Más claro
+  background: '#fff', // Fondo blanco para el panel de empresas
   borderRight: '1px solid #e0e0e0',
   padding: '2rem 1rem',
   display: 'flex',
   flexDirection: 'column',
-  gap: 8
+  gap: 8,
+  marginRight: 40, // Separa del cuadro de conversación
+  borderRadius: 16,
+  boxShadow: '0 4px 24px #0001'
 };
+
 const contactoItem = {
   display: 'flex',
   alignItems: 'center',
