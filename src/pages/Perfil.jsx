@@ -8,6 +8,7 @@ export default function Perfil() {
     sector: '',
     ubicacion: '',
     telefono: '',
+    logo: '', // URL del logo si tienes
   });
   const [editando, setEditando] = useState(false);
   const [mensaje, setMensaje] = useState('');
@@ -47,82 +48,99 @@ export default function Perfil() {
   };
 
   return (
-    <div style={perfilWrapper}>
-      <h2 style={titulo}>Perfil de la Empresa</h2>
-      {mensaje && <p style={{ color: mensaje.includes('Error') ? 'red' : 'green' }}>{mensaje}</p>}
-      <div style={infoBox}>
-        <label style={label}>Nombre:</label>
-        {editando ? (
-          <input style={input} name="nombre" value={empresa.nombre} onChange={handleChange} />
-        ) : (
-          <span>{empresa.nombre}</span>
-        )}
-      </div>
-      <div style={infoBox}>
-        <label style={label}>Correo:</label>
-        {editando ? (
-          <input style={input} name="correo" value={empresa.correo} onChange={handleChange} />
-        ) : (
-          <span>{empresa.correo}</span>
-        )}
-      </div>
-      <div style={infoBox}>
-        <label style={label}>Descripción:</label>
-        {editando ? (
-          <textarea style={input} name="descripcion" value={empresa.descripcion} onChange={handleChange} />
-        ) : (
-          <span>{empresa.descripcion}</span>
-        )}
-      </div>
-      <div style={infoBox}>
-        <label style={label}>Sector:</label>
-        {editando ? (
-          <input style={input} name="sector" value={empresa.sector} onChange={handleChange} />
-        ) : (
-          <span>{empresa.sector}</span>
-        )}
-      </div>
-      <div style={infoBox}>
-        <label style={label}>Ubicación:</label>
-        {editando ? (
-          <input style={input} name="ubicacion" value={empresa.ubicacion} onChange={handleChange} />
-        ) : (
-          <span>{empresa.ubicacion}</span>
-        )}
-      </div>
-      <div style={infoBox}>
-        <label style={label}>Teléfono:</label>
-        {editando ? (
-          <input style={input} name="telefono" value={empresa.telefono} onChange={handleChange} />
-        ) : (
-          <span>{empresa.telefono}</span>
-        )}
-      </div>
-      <div style={{ marginTop: 24 }}>
-        {editando ? (
-          <button style={btnGuardar} onClick={handleGuardar}>Guardar</button>
-        ) : (
-          <button style={btnEditar} onClick={() => setEditando(true)}>Editar Perfil</button>
-        )}
+    <div style={perfilBg}>
+      <div style={perfilCard}>
+        <div style={fotoWrapper}>
+          <img
+            src={empresa.logo || "https://ui-avatars.com/api/?name=" + encodeURIComponent(empresa.nombre)}
+            alt="Logo"
+            style={fotoPerfil}
+          />
+        </div>
+        <h2 style={nombrePerfil}>{empresa.nombre}</h2>
+        <p style={correoPerfil}>{empresa.correo}</p>
+        {mensaje && <p style={{ color: mensaje.includes('Error') ? 'red' : 'green' }}>{mensaje}</p>}
+        <div style={infoGrid}>
+          <div style={infoItem}>
+            <b>Descripción:</b><br />
+            {editando ? (
+              <textarea style={input} name="descripcion" value={empresa.descripcion} onChange={handleChange} />
+            ) : (
+              <span>{empresa.descripcion}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>Sector:</b><br />
+            {editando ? (
+              <input style={input} name="sector" value={empresa.sector} onChange={handleChange} />
+            ) : (
+              <span>{empresa.sector}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>Ubicación:</b><br />
+            {editando ? (
+              <input style={input} name="ubicacion" value={empresa.ubicacion} onChange={handleChange} />
+            ) : (
+              <span>{empresa.ubicacion}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>Teléfono:</b><br />
+            {editando ? (
+              <input style={input} name="telefono" value={empresa.telefono} onChange={handleChange} />
+            ) : (
+              <span>{empresa.telefono}</span>
+            )}
+          </div>
+        </div>
+        <div style={{ marginTop: 24 }}>
+          {editando ? (
+            <button style={btnGuardar} onClick={handleGuardar}>Guardar</button>
+          ) : (
+            <button style={btnEditar} onClick={() => setEditando(true)}>Editar Perfil</button>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-// Estilos
-const perfilWrapper = {
-  maxWidth: 500,
-  margin: '2rem auto',
-  background: '#fff',
-  borderRadius: 12,
-  boxShadow: '0 4px 16px #0001',
-  padding: '2rem',
-  textAlign: 'left'
+// Estilos tipo Facebook
+const perfilBg = {
+  minHeight: '100vh',
+  background: 'linear-gradient(135deg, #e0e7ff 0%, #f4f4f4 100%)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
 };
-const titulo = { textAlign: 'center', color: '#007bff', marginBottom: 24 };
-const infoBox = { marginBottom: 16, display: 'flex', flexDirection: 'column' };
-const label = { fontWeight: 600, marginBottom: 4 };
-const input = { padding: '0.5rem', borderRadius: 6, border: '1px solid #ccc', fontSize: '1rem' };
+const perfilCard = {
+  background: '#fff',
+  borderRadius: 16,
+  boxShadow: '0 4px 24px #0002',
+  padding: '2.5rem 2rem',
+  maxWidth: 500,
+  width: '100%',
+  textAlign: 'center'
+};
+const fotoWrapper = {
+  display: 'flex',
+  justifyContent: 'center',
+  marginBottom: 16
+};
+const fotoPerfil = {
+  width: 120,
+  height: 120,
+  borderRadius: '50%',
+  objectFit: 'cover',
+  border: '4px solid #007bff',
+  background: '#f4f4f4'
+};
+const nombrePerfil = { fontSize: '2rem', color: '#007bff', margin: '0.5rem 0 0.2rem 0' };
+const correoPerfil = { color: '#555', marginBottom: 24 };
+const infoGrid = { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 };
+const infoItem = { background: '#f4f8ff', borderRadius: 8, padding: 12, minHeight: 60, textAlign: 'left', fontSize: '1rem' };
+const input = { width: '100%', padding: '0.5rem', borderRadius: 6, border: '1px solid #ccc', fontSize: '1rem' };
 const btnEditar = {
   background: '#007bff',
   color: '#fff',
