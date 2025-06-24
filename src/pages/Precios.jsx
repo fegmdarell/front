@@ -198,8 +198,7 @@ const botonGratuito = {
   backgroundColor: '#28a745',
   color: 'white',
   border: 'none',
-  padding: '0.75rem 1.5rem',
+  padding: '0.75rem 1.5rem',More actions
   borderRadius: '5px',
   fontSize: '1rem',
-  cursor: 'pointer'
-}
+  cursor: 'pointer'};
