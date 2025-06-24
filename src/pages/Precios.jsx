@@ -12,21 +12,28 @@ export default function Precios() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    console.log('Entrando a useEffect de Precios');
     let interval;
     if (window.WompiCheckout) {
       setWompiReady(true);
+      console.log('Wompi ya estaba listo');
     } else if (!document.getElementById('wompi-script')) {
+      console.log('Agregando script de Wompi');
       const script = document.createElement('script');
       script.src = 'https://checkout.wompi.co/widget.js';
       script.async = true;
       script.id = 'wompi-script';
-      script.onload = () => setWompiReady(true);
+      script.onload = () => {
+        setWompiReady(true);
+        console.log('Script de Wompi cargado');
+      };
       document.head.appendChild(script);
 
       interval = setInterval(() => {
         if (window.WompiCheckout) {
           setWompiReady(true);
           clearInterval(interval);
+          console.log('Wompi disponible por interval');
         }
       }, 200);
     } else {
@@ -34,6 +41,7 @@ export default function Precios() {
         if (window.WompiCheckout) {
           setWompiReady(true);
           clearInterval(interval);
+          console.log('Wompi disponible por interval (ya había script)');
         }
       }, 200);
     }
