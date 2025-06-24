@@ -35,7 +35,7 @@ const landingWrapper = {
 };
 
 const logoStyle = {
-  width: '180px',
+  width: '280px', // o el tamaño que prefieras
   marginBottom: '2rem'
 };
 
