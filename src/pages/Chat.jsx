@@ -1,38 +1,71 @@
 import { useState, useRef, useEffect } from 'react';
 
+// Simulación de empresas/contactos
+const empresas = [
+  { id: 1, nombre: "EcoSoluciones", logo: "https://ui-avatars.com/api/?name=EcoSoluciones" },
+  { id: 2, nombre: "TechNova", logo: "https://ui-avatars.com/api/?name=TechNova" },
+  { id: 3, nombre: "AgroFuturo", logo: "https://ui-avatars.com/api/?name=AgroFuturo" }
+];
+
 export default function Chat() {
-  const [mensajes, setMensajes] = useState([
-    { texto: "¡Hola! ¿En qué podemos ayudarte?", propio: false }
-  ]);
+  const [empresaSeleccionada, setEmpresaSeleccionada] = useState(empresas[0]);
+  const [mensajes, setMensajes] = useState({
+    1: [
+      { texto: "¡Hola EcoSoluciones!", propio: true },
+      { texto: "¡Hola! ¿Cómo podemos colaborar?", propio: false }
+    ],
+    2: [
+      { texto: "¡Hola TechNova!", propio: true }
+    ],
+    3: []
+  });
   const [nuevoMensaje, setNuevoMensaje] = useState('');
   const chatEndRef = useRef(null);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [mensajes]);
+  }, [empresaSeleccionada, mensajes]);
 
   const enviarMensaje = (e) => {
     e.preventDefault();
     if (nuevoMensaje.trim() === '') return;
-    setMensajes([...mensajes, { texto: nuevoMensaje, propio: true }]);
+    setMensajes(prev => ({
+      ...prev,
+      [empresaSeleccionada.id]: [
+        ...(prev[empresaSeleccionada.id] || []),
+        { texto: nuevoMensaje, propio: true }
+      ]
+    }));
     setNuevoMensaje('');
-    // Simulación de respuesta automática
-    setTimeout(() => {
-      setMensajes(mensajesActuales =>
-        [...mensajesActuales, { texto: "¡Gracias por tu mensaje! Pronto te responderemos.", propio: false }]
-      );
-    }, 1000);
   };
 
   return (
-    <div style={chatBg}>
+    <div style={chatLayout}>
+      {/* Lista de empresas */}
+      <div style={contactosBar}>
+        <h3 style={{ color: '#075e54', marginBottom: 16 }}>Empresas</h3>
+        {empresas.map(emp => (
+          <div
+            key={emp.id}
+            style={{
+              ...contactoItem,
+              background: emp.id === empresaSeleccionada.id ? '#e6f7ee' : 'transparent'
+            }}
+            onClick={() => setEmpresaSeleccionada(emp)}
+          >
+            <img src={emp.logo} alt={emp.nombre} style={contactoLogo} />
+            <span>{emp.nombre}</span>
+          </div>
+        ))}
+      </div>
+      {/* Chat */}
       <div style={chatCard}>
         <div style={chatHeader}>
-          <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="Chat" style={{ width: 36, marginRight: 12 }} />
-          <span style={{ fontWeight: 700, fontSize: 20 }}>Soporte Conecta</span>
+          <img src={empresaSeleccionada.logo} alt="Logo" style={{ width: 36, marginRight: 12 }} />
+          <span style={{ fontWeight: 700, fontSize: 20 }}>{empresaSeleccionada.nombre}</span>
         </div>
         <div style={chatBody}>
-          {mensajes.map((msg, idx) => (
+          {(mensajes[empresaSeleccionada.id] || []).map((msg, idx) => (
             <div
               key={idx}
               style={msg.propio ? burbujaPropia : burbujaAjena}
@@ -58,20 +91,41 @@ export default function Chat() {
 }
 
 // 🎨 ESTILOS
-const chatBg = {
+const chatLayout = {
   minHeight: '100vh',
+  display: 'flex',
   background: 'linear-gradient(135deg, #25d366 0%, #075e54 100%)',
+  fontFamily: 'Poppins, sans-serif'
+};
+const contactosBar = {
+  width: 220,
+  background: '#fff',
+  borderRight: '1px solid #e0e0e0',
+  padding: '2rem 1rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: 8
+};
+const contactoItem = {
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center'
+  gap: 12,
+  padding: '0.7rem 0.5rem',
+  borderRadius: 10,
+  cursor: 'pointer',
+  transition: 'background 0.2s'
+};
+const contactoLogo = {
+  width: 36,
+  height: 36,
+  borderRadius: '50%',
+  objectFit: 'cover',
+  background: '#f4f4f4'
 };
 const chatCard = {
-  width: 380,
-  maxWidth: '95vw',
-  height: 600,
+  flex: 1,
+  height: '100vh',
   background: '#f9f9f9',
-  borderRadius: 18,
-  boxShadow: '0 8px 32px #0003',
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden'
