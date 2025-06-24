@@ -100,6 +100,9 @@ export default function Precios() {
           </div>
         ))}
       </div>
+      <p style={{ color: '#e0e7ff', fontSize: '0.95rem', marginTop: '1rem' }}>
+        🔒 Tus pagos están protegidos con cifrado SSL y métodos seguros.
+      </p>
     </div>
   )
 }

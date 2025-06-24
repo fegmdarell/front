@@ -19,6 +19,12 @@ export default function Landing() {
           Registrarse
         </button>
       </div>
+      <p style={{ marginTop: '2rem', color: '#e0e7ff', fontSize: '0.95rem' }}>
+        <button style={{ background: 'none', border: 'none', color: '#00fff7', textDecoration: 'underline', cursor: 'pointer' }}
+          onClick={() => navigate('/politica-datos')}>
+          Política de protección de datos
+        </button>
+      </p>
     </div>
   );
 }
@@ -35,7 +41,7 @@ const landingWrapper = {
 };
 
 const logoStyle = {
-  width: '280px', // o el tamaño que prefieras
+  width: '400px', // o el tamaño que prefieras
   marginBottom: '2rem'
 };
 

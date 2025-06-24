@@ -9,6 +9,7 @@ import Perfil from './pages/Perfil';
 import Chat from './pages/Chat';
 import Precios from './pages/Precios';
 import Ayuda from './pages/Ayuda';
+import PoliticaDatos from './pages/PoliticaDatos';
 
 export default function App() {
   const location = useLocation();
@@ -80,6 +81,7 @@ export default function App() {
           <Route path="/chat" element={<Chat />} />
           <Route path="/precios" element={<Precios />} />
           <Route path="/ayuda" element={<Ayuda />} />
+          <Route path="/politica-datos" element={<PoliticaDatos />} />
         </Routes>
       </main>
 
