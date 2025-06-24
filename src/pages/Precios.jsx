@@ -12,27 +12,35 @@ export default function Precios() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    // Si ya existe el script, no lo agregues de nuevo
-    if (!document.getElementById('wompi-script')) {
+    let interval;
+    if (window.WompiCheckout) {
+      setWompiReady(true);
+    } else if (!document.getElementById('wompi-script')) {
       const script = document.createElement('script');
       script.src = 'https://checkout.wompi.co/widget.js';
       script.async = true;
       script.id = 'wompi-script';
       script.onload = () => setWompiReady(true);
       document.head.appendChild(script);
-    } else if (window.WompiCheckout) {
-      setWompiReady(true);
-    } else {
-      // Espera a que el script cargue si ya está en el DOM pero aún no está disponible
-      const interval = setInterval(() => {
+
+      interval = setInterval(() => {
         if (window.WompiCheckout) {
           setWompiReady(true);
           clearInterval(interval);
         }
       }, 200);
-      return () => clearInterval(interval);
+    } else {
+      interval = setInterval(() => {
+        if (window.WompiCheckout) {
+          setWompiReady(true);
+          clearInterval(interval);
+        }
+      }, 200);
     }
+    return () => clearInterval(interval);
+  }, [])
 
+  useEffect(() => {
     planes.forEach((plan) => {
       const containerId = `paypal-button-container-${plan.nombre}`
       const container = document.getElementById(containerId)
