@@ -99,7 +99,7 @@ const chatLayout = {
 };
 const contactosBar = {
   width: 220,
-  background: '#fff',
+  background: '#f8fafb', // Más claro
   borderRight: '1px solid #e0e0e0',
   padding: '2rem 1rem',
   display: 'flex',
@@ -125,7 +125,7 @@ const contactoLogo = {
 const chatCard = {
   flex: 1,
   height: '100vh',
-  background: '#f9f9f9',
+  background: '#fff', // Fondo blanco para la conversación
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden'
@@ -145,7 +145,7 @@ const chatBody = {
   display: 'flex',
   flexDirection: 'column',
   gap: 12,
-  background: 'url(https://i.imgur.com/6QON1gF.png) repeat'
+  background: '#f4f8fb' // Fondo claro, sin imagen ni negro
 };
 const burbujaPropia = {
   alignSelf: 'flex-end',
