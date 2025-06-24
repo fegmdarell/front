@@ -94,6 +94,8 @@ export default function Chat() {
 const chatLayout = {
   minHeight: '100vh',
   display: 'flex',
+  justifyContent: 'center',   // Centra horizontalmente todo el contenido
+  alignItems: 'center',       // Centra verticalmente
   background: 'linear-gradient(135deg, #25d366 0%, #075e54 100%)',
   fontFamily: 'Poppins, sans-serif'
 };
