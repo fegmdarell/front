@@ -33,27 +33,23 @@ export default function Registro() {
       <div style={card}>
         <h2 style={title}>Registro de Empresa</h2>
         <form onSubmit={handleSubmit}>
-          <input style={input} placeholder="Nombre" onChange={e => setForm({ ...form, nombre: e.target.value })} required />
-          <input style={input} type="email" placeholder="Correo" onChange={e => setForm({ ...form, correo: e.target.value })} required />
-          <input style={input} type="password" placeholder="Contraseña" onChange={e => setForm({ ...form, password: e.target.value })} required />
-
-          <label>Sector:
-            <input name="sector" value={empresa.sector} onChange={handleChange} />
-          </label>
-          <label>Ciudad:
-            <input name="ciudad" value={empresa.ciudad} onChange={handleChange} />
-          </label>
-          <label>Tamaño de empresa:
-            <select name="tamano" value={empresa.tamano} onChange={handleChange}>
-              <option value="">Selecciona</option>
-              <option value="pequeña">Pequeña</option>
-              <option value="mediana">Mediana</option>
-              <option value="grande">Grande</option>
-            </select>
-          </label>
-          <label>Intereses:
-            <input name="intereses" value={empresa.intereses} onChange={handleChange} />
-          </label>
+          <input name="nombre" placeholder="Nombre de la empresa" value={form.nombre} onChange={handleChange} required />
+          <input name="nit" placeholder="NIT" value={form.nit} onChange={handleChange} required />
+          <input name="correo" type="email" placeholder="Correo electrónico" value={form.correo} onChange={handleChange} required />
+          <input name="password" type="password" placeholder="Contraseña" value={form.password} onChange={handleChange} required />
+          <input name="telefono" placeholder="Teléfono" value={form.telefono} onChange={handleChange} required />
+          <input name="ciudad" placeholder="Ciudad" value={form.ciudad} onChange={handleChange} required />
+          <input name="departamento" placeholder="Departamento" value={form.departamento} onChange={handleChange} required />
+          <input name="direccion" placeholder="Dirección" value={form.direccion} onChange={handleChange} required />
+          <input name="sector" placeholder="Sector" value={form.sector} onChange={handleChange} required />
+          <select name="tamano" value={form.tamano} onChange={handleChange} required>
+            <option value="">Tamaño de empresa</option>
+            <option value="pequeña">Pequeña</option>
+            <option value="mediana">Mediana</option>
+            <option value="grande">Grande</option>
+          </select>
+          <input name="intereses" placeholder="Intereses" value={form.intereses} onChange={handleChange} />
+          <input name="contacto" placeholder="Persona de contacto" value={form.contacto} onChange={handleChange} required />
 
           {error && <p style={errorText}>{error}</p>}
           {mensaje && <p style={successText}>{mensaje}</p>}
