@@ -57,7 +57,7 @@ export default function Precios() {
     return () => clearInterval(interval);
   }, [])
 
-  useEffect(() => {
+  /*useEffect(() => {
     planes.forEach((plan) => {
       const containerId = `paypal-button-container-${plan.nombre}`
       const container = document.getElementById(containerId)
@@ -100,7 +100,7 @@ export default function Precios() {
         }).render(`#${containerId}`)
       }
     })
-  }, [])
+  }, [])*/
 
   const handleGratuito = async () => {
     const usuario = JSON.parse(localStorage.getItem('usuario') || '{}')
