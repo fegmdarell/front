@@ -3,12 +3,20 @@ import { useState, useEffect } from 'react';
 export default function Perfil() {
   const [empresa, setEmpresa] = useState({
     nombre: '',
+    nit: '',
     correo: '',
-    descripcion: '',
-    sector: '',
-    ubicacion: '',
+    password: '',
     telefono: '',
-    logo: '', // URL del logo si tienes
+    ciudad: '',
+    departamento: '',
+    direccion: '',
+    sector: '',
+    tamano: '',
+    intereses: '',
+    contacto: '',
+    descripcion: '',
+    ubicacion: '',
+    logo: ''
   });
   const [editando, setEditando] = useState(false);
   const [mensaje, setMensaje] = useState('');
@@ -120,6 +128,38 @@ export default function Perfil() {
               <input style={input} name="intereses" value={empresa.intereses} onChange={handleChange} />
             ) : (
               <span>{empresa.intereses}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>NIT:</b><br />
+            {editando ? (
+              <input style={input} name="nit" value={empresa.nit} onChange={handleChange} />
+            ) : (
+              <span>{empresa.nit}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>Departamento:</b><br />
+            {editando ? (
+              <input style={input} name="departamento" value={empresa.departamento} onChange={handleChange} />
+            ) : (
+              <span>{empresa.departamento}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>Dirección:</b><br />
+            {editando ? (
+              <input style={input} name="direccion" value={empresa.direccion} onChange={handleChange} />
+            ) : (
+              <span>{empresa.direccion}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>Persona de contacto:</b><br />
+            {editando ? (
+              <input style={input} name="contacto" value={empresa.contacto} onChange={handleChange} />
+            ) : (
+              <span>{empresa.contacto}</span>
             )}
           </div>
         </div>
