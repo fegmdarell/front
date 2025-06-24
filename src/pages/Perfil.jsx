@@ -93,6 +93,35 @@ export default function Perfil() {
               <span>{empresa.telefono}</span>
             )}
           </div>
+          <div style={infoItem}>
+            <b>Ciudad:</b><br />
+            {editando ? (
+              <input style={input} name="ciudad" value={empresa.ciudad} onChange={handleChange} />
+            ) : (
+              <span>{empresa.ciudad}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>Tamaño de empresa:</b><br />
+            {editando ? (
+              <select style={input} name="tamano" value={empresa.tamano} onChange={handleChange}>
+                <option value="">Selecciona</option>
+                <option value="pequeña">Pequeña</option>
+                <option value="mediana">Mediana</option>
+                <option value="grande">Grande</option>
+              </select>
+            ) : (
+              <span>{empresa.tamano}</span>
+            )}
+          </div>
+          <div style={infoItem}>
+            <b>Intereses:</b><br />
+            {editando ? (
+              <input style={input} name="intereses" value={empresa.intereses} onChange={handleChange} />
+            ) : (
+              <span>{empresa.intereses}</span>
+            )}
+          </div>
         </div>
         <div style={{ marginTop: 24 }}>
           {editando ? (
@@ -101,6 +130,12 @@ export default function Perfil() {
             <button style={btnEditar} onClick={() => setEditando(true)}>Editar Perfil</button>
           )}
         </div>
+        <button style={{
+          background: '#007bff', color: '#fff', border: 'none', borderRadius: 8,
+          padding: '0.7rem 2rem', fontWeight: 600, cursor: 'pointer', marginTop: 16
+        }}>
+          Agendar reunión
+        </button>
       </div>
     </div>
   );

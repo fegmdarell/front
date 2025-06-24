@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import Toast from '../components/Toast';
+import React from 'react';
+import MisReuniones from '../components/MisReuniones';
 
 export default function Dashboard() {
   const [toastVisible, setToastVisible] = useState(false);
@@ -94,6 +96,9 @@ export default function Dashboard() {
           </p>
         )}
       </div>
+
+      {/* Mis Reuniones Section */}
+      <MisReuniones />
     </div>
   );
 }

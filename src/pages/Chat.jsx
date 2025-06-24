@@ -139,8 +139,10 @@ const chatCard = {
   display: 'flex',
   flexDirection: 'column',
   overflow: 'hidden',
-  margin: '0 auto',           // Centra horizontalmente
-  marginRight: 40             // Separa del panel derecho (ajusta el valor según tu diseño)
+  margin: '0 auto',
+  marginRight: 40,
+  borderRadius: 28, // Borde más suave y redondeado
+  boxShadow: '0 4px 24px #0001'
 };
 const chatHeader = {
   background: '#075e54',

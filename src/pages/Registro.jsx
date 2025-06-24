@@ -37,6 +37,24 @@ export default function Registro() {
           <input style={input} type="email" placeholder="Correo" onChange={e => setForm({ ...form, correo: e.target.value })} required />
           <input style={input} type="password" placeholder="Contraseña" onChange={e => setForm({ ...form, password: e.target.value })} required />
 
+          <label>Sector:
+            <input name="sector" value={empresa.sector} onChange={handleChange} />
+          </label>
+          <label>Ciudad:
+            <input name="ciudad" value={empresa.ciudad} onChange={handleChange} />
+          </label>
+          <label>Tamaño de empresa:
+            <select name="tamano" value={empresa.tamano} onChange={handleChange}>
+              <option value="">Selecciona</option>
+              <option value="pequeña">Pequeña</option>
+              <option value="mediana">Mediana</option>
+              <option value="grande">Grande</option>
+            </select>
+          </label>
+          <label>Intereses:
+            <input name="intereses" value={empresa.intereses} onChange={handleChange} />
+          </label>
+
           {error && <p style={errorText}>{error}</p>}
           {mensaje && <p style={successText}>{mensaje}</p>}
 
